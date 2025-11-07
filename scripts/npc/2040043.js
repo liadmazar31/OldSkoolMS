@@ -29,13 +29,13 @@
 @	NPC MapId = 922010800
 @	Function = LPQ - 8 Stage
 @
-@	Description: Used to find the combo to unlock the next door. Players stand on 5 different crates to guess the combo.
+@	Description: Used to find the combo to unlock the next door. Players stand on 3 different crates to guess the combo.
 */
 
 function generateCombo() {
     var countPicked = 0;
     var positions = Array(0, 0, 0, 0, 0, 0, 0, 0, 0);
-    while (countPicked < 5) {
+    while (countPicked < 3) {
         var picked = Math.floor(Math.random() * positions.length);
         if (positions[picked] == 1) // Don't let it pick one its already picked.
         {
@@ -98,7 +98,7 @@ function action(mode, type, selection) {
                 var state = eim.getIntProperty("statusStg" + stage);
 
                 if (state == -1) {           // preamble
-                    cm.sendOk("Hi. Welcome to the #bstage " + stage + "#k. In this stage, line up 5 member of your party above those boxes in order to form the right combination to unlock the next stage. Only one player should stay above a box desired to pertain the combination.");
+                    cm.sendOk("Hi. Welcome to the #bstage " + stage + "#k. In this stage, line up 3 member of your party above those boxes in order to form the right combination to unlock the next stage. Only one player should stay above a box desired to pertain the combination.");
 
                     var st = (debug) ? 2 : 0;
                     eim.setProperty("statusStg" + stage, st);
@@ -125,7 +125,7 @@ function action(mode, type, selection) {
                         }
                     }
 
-                    if (playersOnCombo == 5 || cm.getPlayer().gmLevel() > 1) {
+                    if (playersOnCombo == 3 || cm.getPlayer().gmLevel() > 1) {
                         var comboStr = eim.getProperty("stage" + stage + "combo");
                         if (comboStr == null) {
                             comboStr = generateCombo();
@@ -149,7 +149,7 @@ function action(mode, type, selection) {
                             cm.dispose();
                         }
                     } else {
-                        cm.sendNext("It looks like you haven't found the 5 boxes just yet. Please think of a different combination of boxes. Only 5 are allowed to stand on boxes, and if you move it may not count as an answer, so please keep that in mind. Keep going!");
+                        cm.sendNext("It looks like you haven't found the 3 boxes just yet. Please think of a different combination of boxes. Only 3 are allowed to stand on boxes, and if you move it may not count as an answer, so please keep that in mind. Keep going!");
                         cm.dispose();
                     }
                 }
