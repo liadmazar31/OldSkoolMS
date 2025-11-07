@@ -1,0 +1,9 @@
+# Copy this file to terraform.tfvars and fill in your values
+
+aws_region         = "us-east-1"
+project_name       = "cosmic-maplestory"
+instance_type      = "t2.micro"  # Free tier eligible
+key_name           = "your-key-pair-name"  # REQUIRED: Your AWS SSH key pair name
+allowed_ssh_cidr   = ["your-ip/32"]  # IMPORTANT: Restrict to your IP for security
+root_volume_size   = 30
+db_password        = ""  # Optional: Set MySQL root password (leave empty for no password)
