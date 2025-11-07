@@ -144,9 +144,8 @@ resource "aws_security_group" "cosmic_sg" {
 
 # Elastic IP
 resource "aws_eip" "cosmic_eip" {
-  domain = "vpc"
-  # instance association will be set after import
-  # instance = aws_instance.cosmic_server.id
+  domain   = "vpc"
+  instance = aws_instance.cosmic_server.id
 
   tags = {
     Name = "${var.project_name}-eip"
